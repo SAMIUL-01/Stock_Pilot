@@ -1,0 +1,7 @@
+digraph G { rankdir=LR; node[shape=record,fontname=Helvetica,fontsize=10]; edge[fontname=Helvetica,fontsize=9];
+cat1[label="{cat1 : Category|name = \"Accessories\"}"]; sup1[label="{sup1 : Supplier|name = \"TechSource Ltd\"\lleadTimeDays = 4\l}"];
+kb[label="{keyboard1 : Product|sku = \"KB-001\"\lname = \"USB Keyboard\"\lcostPrice = 350.0\lsellPrice = 500.0\lquantity = 12\lreorderLevel = 8\l}"];
+si1[label="{item1 : SaleItem|quantity = 3\lunitPrice = 500.0\lunitCost = 350.0\l}"];
+sale1[label="{sale1001 : Sale|id = 1001\ltime = 2026-10-20T11:30\l}"];
+svc[label="{inventory : InventoryService|products = 3 items\lsales = 1 item\l}"];
+kb->cat1[label="category"]; kb->sup1[label="supplier"]; si1->kb[label="product"]; sale1->si1[label="items[0]"]; svc->sale1; svc->kb; }

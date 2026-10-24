@@ -1,0 +1,9 @@
+digraph G { rankdir=LR; fontname=Helvetica; node[fontname=Helvetica,fontsize=11]; edge[fontname=Helvetica,fontsize=9];
+Admin[shape=box]; Staff[shape=box]; Supplier[shape=box];
+P1[shape=ellipse,label="1.0\nProduct\nManagement"]; P2[shape=ellipse,label="2.0\nPurchase\nProcessing"];
+P3[shape=ellipse,label="3.0\nSales &\nBilling"]; P4[shape=ellipse,label="4.0\nSmart Restock\nAdvisor"]; P5[shape=ellipse,label="5.0\nReporting"];
+D1[shape=cds,label="D1 Products"]; D2[shape=cds,label="D2 Purchases"]; D3[shape=cds,label="D3 Sales"]; D4[shape=cds,label="D4 Stock Movements"];
+Admin->P1[label="product details"]; P1->D1; Staff->P2[label="goods received"]; Supplier->P2[label="delivery note"];
+P2->D2; P2->D1[label="stock-in"]; P2->D4; Staff->P3[label="cart / quantity"]; D1->P3[label="price, stock"];
+P3->D3[label="invoice"]; P3->D1[label="stock-out"]; P3->D4; P3->Staff[label="invoice"];
+D3->P4[label="sales history"]; D1->P4; P4->Admin[label="restock advice"]; D3->P5; D1->P5; D4->P5; P5->Admin[label="reports"]; }

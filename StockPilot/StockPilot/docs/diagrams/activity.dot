@@ -1,0 +1,6 @@
+digraph G { fontname=Helvetica; node[fontname=Helvetica,fontsize=11,shape=box,style=rounded]; edge[fontname=Helvetica,fontsize=9];
+S[shape=circle,label="",style=filled,fillcolor=black,width=.25]; E[shape=doublecircle,label="",style=filled,fillcolor=black,width=.2];
+A1[label="Staff logs in"]; A2[label="Enter SKU & quantity\n(add to cart)"]; A3[shape=diamond,style="",label="Stock\nsufficient?"];
+A4[label="Show error:\ninsufficient stock"]; A5[shape=diamond,style="",label="More\nitems?"]; A6[label="Calculate total\n& profit"];
+A7[label="Save sale and deduct stock\n(all-or-nothing)"]; A8[label="Write stock movement\nto audit trail"]; A9[label="Show invoice;\nrefresh low-stock alerts"];
+S->A1->A2->A3; A3->A4[label="no"]; A4->A2; A3->A5[label="yes"]; A5->A2[label="yes"]; A5->A6[label="no"]; A6->A7->A8->A9->E; }

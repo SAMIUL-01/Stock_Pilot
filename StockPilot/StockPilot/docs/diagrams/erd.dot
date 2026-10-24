@@ -1,0 +1,14 @@
+digraph G { rankdir=LR; node[shape=record,fontname=Helvetica,fontsize=10]; edge[fontname=Helvetica,fontsize=10];
+users[label="{users|PK user_id\lusername\lpassword_hash\lrole\l}"]; categories[label="{categories|PK category_id\lname\l}"];
+suppliers[label="{suppliers|PK supplier_id\lname\lphone\llead_time_days\l}"];
+products[label="{products|PK product_id\lsku (unique)\lname\lFK category_id\lFK supplier_id\lcost_price\lsell_price\lquantity\lreorder_level\l}"];
+purchases[label="{purchases|PK purchase_id\lFK supplier_id\lFK user_id\lpurchase_date\l}"];
+purchase_items[label="{purchase_items|PK item_id\lFK purchase_id\lFK product_id\lquantity\lunit_cost\l}"];
+sales[label="{sales|PK sale_id\lFK user_id\lsale_date\ldiscount\ltotal\l}"];
+sale_items[label="{sale_items|PK item_id\lFK sale_id\lFK product_id\lquantity\lunit_price\lunit_cost\l}"];
+stock_movements[label="{stock_movements|PK movement_id\lFK product_id\lFK user_id\ltype\lquantity_change\lreason\ltimestamp\l}"];
+categories->products[taillabel="1",headlabel="N"]; suppliers->products[taillabel="1",headlabel="N"];
+suppliers->purchases[taillabel="1",headlabel="N"]; users->purchases[taillabel="1",headlabel="N"]; users->sales[taillabel="1",headlabel="N"];
+purchases->purchase_items[taillabel="1",headlabel="N"]; sales->sale_items[taillabel="1",headlabel="N"];
+products->purchase_items[taillabel="1",headlabel="N"]; products->sale_items[taillabel="1",headlabel="N"];
+products->stock_movements[taillabel="1",headlabel="N"]; users->stock_movements[taillabel="1",headlabel="N"]; }

@@ -1,0 +1,15 @@
+digraph G { rankdir=BT; node[shape=record,fontname=Helvetica,fontsize=10]; edge[fontname=Helvetica,fontsize=9];
+Category[label="{Category|- name: String|+ getName(): String}"];
+Supplier[label="{Supplier|- name: String\l- leadTimeDays: int\l|+ getName(): String\l+ getLeadTimeDays(): int\l}"];
+Product[label="{Product|- sku: String\l- name: String\l- costPrice: double\l- sellPrice: double\l- reorderLevel: int\l- quantity: int\l|+ addStock(n: int)\l+ removeStock(n: int)\l+ isLowStock(): boolean\l}"];
+SaleItem[label="{SaleItem|- quantity: int\l- unitPrice: double\l- unitCost: double\l|+ lineTotal(): double\l+ lineProfit(): double\l}"];
+Sale[label="{Sale|- id: int\l- time: LocalDateTime\l|+ addItem(i: SaleItem)\l+ total(): double\l+ profit(): double\l}"];
+InventoryService[label="{InventoryService|- products: Map\l- sales: List\l- auditLog: List\l|+ addProduct(p: Product)\l+ sell(cart: Map): Sale\l+ adjustStock(sku, delta, reason)\l+ lowStock(): List\l}"];
+RestockAdvisor[label="{RestockAdvisor|- windowDays: int\l|+ advise(): List\<Suggestion\>\l}"];
+Ex[label="{InsufficientStockException|+ message: String}"]; Base[label="{Exception|}"];
+MainApp[label="{MainApp (Swing UI)|- service: InventoryService\l- advisor: RestockAdvisor\l|+ refresh()\l}"];
+Product->Category[label="belongs to  N..1"]; Product->Supplier[label="supplied by  N..1"];
+SaleItem->Product[label="refers to  N..1"]; SaleItem->Sale[arrowhead=diamond,label="1..*",dir=back,arrowtail=diamond,arrowhead=none];
+InventoryService->Product[arrowhead=odiamond,label="manages 0..*"]; InventoryService->Sale[arrowhead=odiamond,label="records 0..*"];
+RestockAdvisor->InventoryService[arrowhead=open,style=dashed,label="uses"]; MainApp->InventoryService[arrowhead=open,style=dashed]; MainApp->RestockAdvisor[arrowhead=open,style=dashed];
+Ex->Base[arrowhead=empty]; Product->Ex[arrowhead=open,style=dashed,label="throws",constraint=false]; }

@@ -1,0 +1,7 @@
+digraph G { rankdir=LR; fontname=Helvetica; node[fontname=Helvetica,fontsize=11];
+Admin[shape=box,label="«actor»\nAdmin"]; Staff[shape=box,label="«actor»\nStaff"];
+subgraph cluster_s { label="StockPilot System"; style=rounded; node[shape=ellipse];
+U1[label="Login"]; U2[label="Manage Products"]; U3[label="Manage Suppliers"]; U4[label="Record Purchase\n(Stock-in)"]; U5[label="Process Sale & Invoice"];
+U6[label="Adjust Stock"]; U7[label="View Low-Stock Alerts"]; U8[label="View Restock Advice"]; U9[label="View Reports"]; U10[label="Manage Users"]; U11[label="View Audit Trail"]; }
+Admin->{U1 U2 U3 U6 U8 U9 U10 U11 U7}; Staff->{U1 U4 U5 U7};
+U5->U7[style=dashed,label="«include»"]; }
